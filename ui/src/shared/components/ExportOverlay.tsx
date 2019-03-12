@@ -19,8 +19,8 @@ import {notify as notifyAction} from 'src/shared/actions/notifications'
 
 // Constants
 import {
-  dashboardSavedAsTemplate,
-  saveDashboardAsTemplateFailed,
+  resourceSavedAsTemplate,
+  saveResourceAsTemplateFailed,
 } from 'src/shared/copy/notifications'
 
 // Utils
@@ -104,16 +104,13 @@ class ExportOverlay extends PureComponent<Props> {
   }
 
   private get toTemplateButton(): JSX.Element {
-    const {resourceName} = this.props
-    if (resourceName == 'Dashboard') {
-      return (
-        <Button
-          text={`Save as template`}
-          onClick={this.handleConvertToTemplate}
-          color={ComponentColor.Primary}
-        />
-      )
-    }
+    return (
+      <Button
+        text={`Save as template`}
+        onClick={this.handleConvertToTemplate}
+        color={ComponentColor.Primary}
+      />
+    )
   }
 
   private handleExport = (): void => {
@@ -124,15 +121,15 @@ class ExportOverlay extends PureComponent<Props> {
   }
 
   private handleConvertToTemplate = async (): Promise<void> => {
-    const {resource, onDismissOverlay, orgID, notify} = this.props
+    const {resource, onDismissOverlay, orgID, notify, resourceName} = this.props
 
     const template = addOrgIDToTemplate(resource, orgID)
 
     try {
       await client.templates.create(template)
-      notify(dashboardSavedAsTemplate())
+      notify(resourceSavedAsTemplate(resourceName))
     } catch (error) {
-      notify(saveDashboardAsTemplateFailed(error))
+      notify(saveResourceAsTemplateFailed(resourceName, error))
     }
     onDismissOverlay()
   }
