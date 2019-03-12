@@ -33,11 +33,14 @@ import 'src/shared/components/ExportOverlay.scss'
 // Types
 import {ITemplate} from '@influxdata/influx'
 
-interface OwnProps {
+interface OwnProps extends DefaultProps {
   onDismissOverlay: () => void
   resource: ITemplate
-  orgID: string
   resourceName: string
+  orgID: string
+}
+
+interface DefaultProps {
   isVisible?: boolean
 }
 
@@ -48,7 +51,7 @@ interface DispatchProps {
 type Props = OwnProps & DispatchProps
 
 class ExportOverlay extends PureComponent<Props> {
-  public static defaultProps: Partial<Props> = {
+  public static defaultProps: DefaultProps = {
     isVisible: true,
   }
 
@@ -139,7 +142,7 @@ const mdtp: DispatchProps = {
   notify: notifyAction,
 }
 
-export default connect<null, DispatchProps, OwnProps>(
+export default connect<{}, DispatchProps, OwnProps>(
   null,
   mdtp
 )(ExportOverlay)
