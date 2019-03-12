@@ -30,7 +30,7 @@ interface OwnProps extends WithRouterProps {
 
 type Props = DispatchProps & StateProps & OwnProps
 
-class OrgTaskImportOverlay extends PureComponent<Props> {
+class TaskImportOverlay extends PureComponent<Props> {
   public render() {
     return (
       <ImportOverlay
@@ -93,4 +93,4 @@ const mstp = (state: AppState): StateProps => {
 export default connect<StateProps, DispatchProps, Props>(
   mstp,
   mdtp
-)(withRouter(OrgTaskImportOverlay))
+)(withRouter(TaskImportOverlay))
