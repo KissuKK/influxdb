@@ -43,7 +43,7 @@ import OrgTelegrafsIndex from 'src/organizations/containers/OrgTelegrafsIndex'
 import OrgVariablesIndex from 'src/organizations/containers/OrgVariablesIndex'
 import OrgScrapersIndex from 'src/organizations/containers/OrgScrapersIndex'
 import OrgTasksIndex from 'src/organizations/containers/OrgTasksIndex'
-import OrgTaskExportOverlay from 'src/organizations/components/OrgTaskExportOverlay'
+import TaskExportOverlay from 'src/organizations/components/TaskExportOverlay'
 import TaskImportOverlay from 'src/organizations/components/TaskImportOverlay'
 
 import OnboardingWizardPage from 'src/onboarding/containers/OnboardingWizardPage'
@@ -141,7 +141,7 @@ class Root extends PureComponent {
                               />
                               <Route
                                 path=":id/export"
-                                component={OrgTaskExportOverlay}
+                                component={TaskExportOverlay}
                               />
                             </Route>
                             <Route path="tasks/new" component={OrgTaskPage} />
@@ -154,7 +154,7 @@ class Root extends PureComponent {
                         <Route path="tasks" component={TasksPage}>
                           <Route
                             path=":id/export"
-                            component={OrgTaskExportOverlay}
+                            component={TaskExportOverlay}
                           />
                           <Route path="import" component={TaskImportOverlay} />
                         </Route>
